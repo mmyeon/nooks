@@ -10,6 +10,7 @@ const useInput = (initialValue, validator) => {
 
     if (typeof validator === "function") {
       // 유효성 검사 실행
+      // validator가 실행되기를 기다리고 있음
       willUpdate = validator(value);
     }
 
@@ -22,7 +23,9 @@ const useInput = (initialValue, validator) => {
 };
 
 const App = () => {
-  const maxLen = (value) => value.length <= 10;
+  // bool을 리턴함
+  // @을 포함하면 false임
+  const maxLen = (value) => !value.includes("@");
   const name = useInput("Mr.", maxLen);
   const email = useInput("@");
 
