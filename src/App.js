@@ -1,39 +1,26 @@
 import React, { useState } from "react";
 
-const useInput = (initialValue, validator) => {
-  const [value, setValue] = useState(initialValue);
-  const onChange = (event) => {
-    const {
-      target: { value },
-    } = event;
-    let willUpdate = true;
-
-    if (typeof validator === "function") {
-      // 유효성 검사 실행
-      // validator가 실행되기를 기다리고 있음
-      willUpdate = validator(value);
-    }
-
-    if (willUpdate) {
-      setValue(value);
-    }
-  };
-
-  return { value, onChange };
-};
+// api로 무언가를 가져오려고함
+// TODO: 내가 선택한 섹션의 내용만 보여주기
+// TODO: 처음에는 Section 1의 컨텐츠가 보임.
 
 const App = () => {
-  // bool을 리턴함
-  // @을 포함하면 false임
-  const maxLen = (value) => !value.includes("@");
-  const name = useInput("Mr.", maxLen);
-  const email = useInput("@");
+  const content = [
+    {
+      tab: "Section 1",
+      content: " I'm the content of the Section 1",
+    },
+    {
+      tab: "Section 2",
+      content: " I'm the content of the Section 2",
+    },
+  ];
 
   return (
     <div className="App">
-      <h1>Hello</h1>
-      <input placeholder="Name" {...name} />
-      <input placeholder="Email" {...email} />
+      {content.map((section) => (
+        <button>{section.tab}</button>
+      ))}
     </div>
   );
 };
