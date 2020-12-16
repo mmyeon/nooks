@@ -17,19 +17,27 @@ const content = [
 ];
 
 const useTabs = (initialIndex, allTabs) => {
+  // if (!allTabs || !Array.isArray(allTabs)) {
+  //   // 에러발생시 useTabs함수 더이상 실행시키 않고 그대로 리턴함
+  //   return;
+  // }
+
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
   return {
     currentItem: allTabs[currentIndex],
+    changeItem: setCurrentIndex,
   };
 };
 
 const App = () => {
-  const tabs = useTabs(0, content);
+  const { currentItem, changeItem } = useTabs(0, content);
+
   return (
     <div className="App">
-      {content.map((section) => (
-        <button>{section.tab}</button>
+      {content.map((section, index) => (
+        <button onClick={() => changeItem(index)}>{section.tab}</button>
       ))}
+      <div>{currentItem.content}</div>
     </div>
   );
 };
