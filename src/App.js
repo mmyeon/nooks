@@ -22,7 +22,8 @@ const useInput = (initialValue, validator) => {
 };
 
 const App = () => {
-  const name = useInput("Mr.");
+  const maxLen = (value) => value.length <= 10;
+  const name = useInput("Mr.", maxLen);
   const email = useInput("@");
 
   return (
