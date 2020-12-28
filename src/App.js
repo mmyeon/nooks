@@ -1,17 +1,17 @@
 import React from "react";
-import useClick from "./useClick";
+import useConfirm from "./useConfirm";
 
 const App = () => {
-  const sayHello = () => {
-    console.log("Say hello");
+  const deleteWorld = () => {
+    console.log("Deleting the world...");
   };
-
-  // useClick 호출하면 refence만들어짐
-  const title = useClick(sayHello);
-
+  const abort = () => {
+    console.log("Aborted");
+  };
+  const confirmDelete = useConfirm("Are you sure?", deleteWorld, abort);
   return (
     <div>
-      <h1 ref={title}>HI</h1>
+      <button onClick={confirmDelete}>Delete the world</button>
     </div>
   );
 };
