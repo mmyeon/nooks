@@ -1,15 +1,21 @@
 // import { useEffect, useRef } from "react";
 
-const useConfirm = (message = "", callback, rejection) => {
-  if (typeof callback !== "function") {
+const useConfirm = (message = "", onConfirm, onCancle) => {
+  // onConfirm은 required임.
+  if (!onConfirm || typeof onConfirm !== "function") {
+    return;
+  }
+
+  //   onCancle은 required가 아님.
+  if (onCancle && typeof onCancle !== "function") {
     return;
   }
 
   const confirmAction = () => {
     if (window.confirm(message)) {
-      callback();
+      onConfirm();
     } else {
-      rejection();
+      onCancle();
     }
   };
 
