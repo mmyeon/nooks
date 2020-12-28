@@ -1,13 +1,19 @@
+import { useRef, useEffect } from "react";
 import React from "react";
-import useTitle from "./useTitle";
 
 const App = () => {
-  const titleUpdater = useTitle("Loading...");
-  setTimeout(() => titleUpdater("Welcome"), 3000);
+  const potato = useRef();
+
+  // setTimeout(() => console.log(potato.current), 3000);
+
+  useEffect(() => {
+    setTimeout(() => potato.current.focus(), 3000);
+  }, []);
 
   return (
     <div>
-      <button onClick={() => titleUpdater("Changed")}>Change Title</button>
+      <div>HI</div>
+      <input ref={potato} placeholder="la" />
     </div>
   );
 };
