@@ -1,19 +1,17 @@
-import { useRef, useEffect } from "react";
 import React from "react";
+import useClick from "./useClick";
 
 const App = () => {
-  const potato = useRef();
+  const sayHello = () => {
+    console.log("Say hello");
+  };
 
-  // setTimeout(() => console.log(potato.current), 3000);
-
-  useEffect(() => {
-    setTimeout(() => potato.current.focus(), 3000);
-  }, []);
+  // useClick 호출하면 refence만들어짐
+  const title = useClick(sayHello);
 
   return (
     <div>
-      <div>HI</div>
-      <input ref={potato} placeholder="la" />
+      <h1 ref={title}>HI</h1>
     </div>
   );
 };
