@@ -1,10 +1,16 @@
 import React from "react";
-import useBeforeLeave from "./useBeforeLeave";
+import useFadeIn from "./useFadeIn";
 
 const App = () => {
-  const begForLife = () => console.log("Pls don't leave");
-  useBeforeLeave(begForLife);
-  return <div>Hi</div>;
+  const fadeInH1 = useFadeIn(1, 2);
+  const fadeInP = useFadeIn(5);
+
+  return (
+    <div>
+      <h1 {...fadeInH1}>Hi</h1>
+      <p {...fadeInP}>What's going on ???????????</p>
+    </div>
+  );
 };
 
 export default App;
