@@ -1,17 +1,14 @@
 import React from "react";
-import useConfirm from "./useConfirm";
+import usePreventLeave from "./usePreventLeave";
 
+// TODO: 윈도우 창 닫을때 진짜 닫을거야?라고 물어보기
 const App = () => {
-  const deleteWorld = () => {
-    console.log("Deleting the world...");
-  };
-  const abort = () => {
-    console.log("Aborted");
-  };
-  const confirmDelete = useConfirm("Are you sure?", deleteWorld, abort);
+  const { enablePrevent, disablePrevent } = usePreventLeave();
+
   return (
     <div>
-      <button onClick={confirmDelete}>Delete the world</button>
+      <button onClick={enablePrevent}>Protect</button>
+      <button onClick={disablePrevent}>Unprotect</button>
     </div>
   );
 };
