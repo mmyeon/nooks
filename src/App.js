@@ -1,16 +1,15 @@
 import React from "react";
-import useNetwork from "./useNetwork";
-
-// TODO: 네트워크가 바뀔때마다 함수 호출하기
+import useScroll from "./useScroll";
 
 const App = () => {
-  const handleNetworkChange = (onLine) =>
-    console.log(console.log(onLine ? "We just went online" : "We are offline"));
-  const onLine = useNetwork(handleNetworkChange);
+  // y의 값만 필요하므로 y만 구조 분해 할당하기
+  const { y } = useScroll();
 
   return (
-    <div>
-      <h1>{onLine ? "Online" : "Offline"}</h1>
+    <div style={{ height: "1000vh" }}>
+      <h1 style={{ position: "fixed", color: y > 100 ? "red" : "blue" }}>
+        Hello
+      </h1>
     </div>
   );
 };
